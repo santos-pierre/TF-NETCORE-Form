@@ -1,0 +1,26 @@
+<h1>Exo Form</h1>
+
+<form [formGroup]="contactForm" class="form">
+	<div class="form-input-group col-2">
+		<div class="form-input">
+			<label for="first-name">First Name: </label>
+			<input id="first-name" type="text" formControlName="firstName">
+		</div>
+
+		<div class="form-input">
+			<label for="last-name">Last Name: </label>
+			<input id="last-name" type="text" formControlName="lastName">
+		</div>
+	</div>
+	<div class="form-input-group col-1">
+		<div class="form-input">
+			<label for="message">Message: </label>
+			<textarea id="message" cols="30" rows="4" formControlName="message"></textarea>
+		</div>
+	</div>
+	<div>
+
+	</div>
+</form>
+
+{{ contactForm.value | json }}

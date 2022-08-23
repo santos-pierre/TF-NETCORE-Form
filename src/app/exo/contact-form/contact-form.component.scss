@@ -1,0 +1,40 @@
+.form {
+	max-width: 42rem;
+	margin: 1rem auto;
+}
+
+.form-input-group {
+	display: grid;
+	margin-bottom: 1rem;
+	column-gap: 5rem;
+}
+
+.col-2 {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.col-1 {
+	grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.form-input {
+	label {
+		display: block;
+		font-size: 0.875rem;
+		margin-bottom: .25rem;
+		font-weight: bold;
+	}
+	input, textarea{
+		width: 100%;
+	}
+
+	textarea {
+		resize: none;
+	}
+}
+
+.error-input{
+	margin-top: .5rem;
+	font-size: 0.875rem;
+	color: #EF4444;
+}

@@ -1,0 +1,70 @@
+<h1>Form Demo</h1>
+
+<h3>Form Control</h3>
+<div>
+	<label for="name">Name: </label>
+	<input id="name" type="text" [formControl]="newsletter">
+</div>
+
+<p>{{ newsletter.value }}</p>
+
+<h3>Form Group</h3>
+
+<form [formGroup]="subscriptionForm" (ngSubmit)="handleSubmit()">
+
+	<div>
+		<label for="first-name">First Name: </label>
+		<input id="first-name" type="text" formControlName="firstName">
+	</div>
+
+  <div>
+		<label for="birth-date">Birth Date: </label>
+		<input id="birth-date" type="date" formControlName="birthDate">
+	</div>
+
+	<div formGroupName="address">
+		<h4>Adresse</h4>
+
+		<div>
+			<label for="street">Street: </label>
+			<input id="street" type="text" formControlName="street">
+		</div>
+
+		<div>
+			<label for="code-postal">Code Postal: </label>
+			<input id="code-postal" type="text" formControlName="codePostal">
+		</div>
+
+	</div>
+
+	<button type="submit" [disabled]="!subscriptionForm.valid">Submit</button>
+
+</form>
+
+{{subscriptionForm.value | json}}
+
+<h3>Form Builder</h3>
+
+<form [formGroup]="artistProfile">
+	<div>
+		<label for="first-name">First Name: </label>
+		<input id="first-name" type="text" formControlName="name">
+		<p *ngIf="artistProfile.get('name')?.hasError('required') && (artistProfile.get('name')?.touched || artistProfile.get('name')?.dirty)">Required Name</p>
+		<p *ngIf="artistProfile.get('name')?.hasError('minlength') && (artistProfile.get('name')?.touched || artistProfile.get('name')?.dirty)">Min 3 characters</p>
+	</div>
+
+	<div formArrayName="genres">
+		<h2>Genres</h2>
+		<button type="button" (click)="addGenres()">+ Add another genre</button>
+
+		<div *ngFor="let genre of genres.controls; let i=index">
+			<label for="genre-{{ i }}">Genre:</label>
+			<input id="genre-{{ i }}" type="text" [formControlName]="i">
+			<p (click)="removeGenre(i)">X</p>
+		</div>
+	</div>
+
+	<button type="submit" [disabled]="!artistProfile.valid">Submit</button>
+</form>
+
+{{ artistProfile.value | json}}
